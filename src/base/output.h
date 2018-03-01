@@ -27,7 +27,6 @@ public:
         for (int i = 0; i < assignments_.size(); ++i) {
             vector<int> &rides = assignments_[i];
             printf("%d ", (int) rides.size());
-            sort(rides.begin(), rides.end());
             for (const auto &r: rides) {
                 printf("%d ", r);
             }
