@@ -17,14 +17,16 @@ int main(int argc, char **argv) {
         sscanf(argv[1], "%d", &filename_index);
     }
 
+    const string filename = filenames[filename_index];
+
     Input input;
-    input.ReadFromFile(filenames[filename_index]);
+    input.ReadFromFile("input/" + filename);
 
     Solver *solver = new MySolver(input);
     solver->Solve();
 
     Output output = solver->GetOutput();
-    output.PrintToStd();
+    output.PrintToFile("output/" + filename);
 
     return 0;
 }

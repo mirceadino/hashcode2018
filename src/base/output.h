@@ -9,7 +9,7 @@ class Output {
 public:
     Output() {}
 
-    void PrintToStd() {
+    void PrintToFile(const string filename) {
 
     }
 

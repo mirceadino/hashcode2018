@@ -9,7 +9,7 @@ class Input {
 public:
     Input() {}
 
-    void ReadFromFile(string filename) {
+    void ReadFromFile(const string filename) {
 
     }
 
