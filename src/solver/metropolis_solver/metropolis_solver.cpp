@@ -15,14 +15,35 @@ namespace {
 
 }
 
-pair<int, int> center = {7500, 2250};
-const int radius = 5000;
+const int radius = 2000;
 
 vector<Ride> FilterByCenterAndRadius(vector<Ride> input_rides) {
     vector<Ride> rides;
+
+    pair<int, int> average_start = {0, 0};
     for (auto &ride: input_rides) {
-        if (GetChessDistance(ride.start_intersection, center) <= radius &&
-            GetChessDistance(ride.finish_intersection, center) <= radius) {
+        average_start.first += ride.start_intersection.first;
+        average_start.second += ride.start_intersection.second;
+    }
+    average_start.first /= input_rides.size();
+    average_start.second /= input_rides.size();
+
+    pair<int, int> average_finish = {0, 0};
+    for (auto &ride: input_rides) {
+        average_finish.first += ride.finish_intersection.first;
+        average_finish.second += ride.finish_intersection.second;
+    }
+    average_finish.first /= input_rides.size();
+    average_finish.second /= input_rides.size();
+
+    cout << average_start.first << " " << average_start.second << endl;
+    cout << average_finish.first << " " << average_finish.second << endl;
+
+    for (auto &ride: input_rides) {
+        const int sd = GetDistance(ride.start_intersection, average_start);
+        const int fd = GetDistance(ride.finish_intersection, average_finish);
+        //cout << sd << " " << fd << endl;
+        if (sd <= radius && fd <= radius) {
             rides.push_back(ride);
         }
     }
