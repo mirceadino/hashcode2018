@@ -21,7 +21,6 @@ void HamiltonSolver::Solve() {
         int time = 0;
         int x = 0;
         int y = 0;
-//        std::cout << "mlc";
 
         while (time < input.getNumSteps()) {
             int best_ride = -1;
@@ -35,7 +34,8 @@ void HamiltonSolver::Solve() {
                 }
                 int curr_distance = GetDistance(make_pair(x, y), ride.start_intersection);
                 int arrival_time = time + curr_distance;
-                int finish_time = max(arrival_time, ride.earliest_start) + curr_distance;
+                int ride_distance = GetDistance(ride.start_intersection, ride.finish_intersection);
+                int finish_time = max(arrival_time, ride.earliest_start) + ride_distance;
                 if (finish_time > ride.latest_finish) {
                     continue;
                 }
