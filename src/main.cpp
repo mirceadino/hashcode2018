@@ -6,6 +6,7 @@
 
 #include "solver/my_solver/my_solver.h"
 #include "solver/uber_solver/uber_solver.h"
+#include "solver/hamilton_solver/hamilton_solver.h"
 
 using namespace std;
 
@@ -23,7 +24,7 @@ int main(int argc, char **argv) {
     Input input;
     input.ReadFromFile("./input/" + filename + ".in");
 
-    Solver *solver = new UberSolver(input);
+    Solver *solver = new HamiltonSolver(input);
     solver->Solve();
 
     Output output = solver->GetOutput();
