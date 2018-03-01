@@ -17,6 +17,9 @@ void HamiltonSolver::Solve() {
     auto rides = input.getRides();
     vector<bool> viz(rides.size());
 
+    srand(time(0));
+    random_shuffle(rides.begin(), rides.end());
+
     for (int i = 0; i < input.getNumVehicles(); ++i) {
         int time = 0;
         int x = 0;
@@ -28,6 +31,8 @@ void HamiltonSolver::Solve() {
             int best_x = 1 << 30;
             int best_y = 1 << 30;
             int best_time = 1 << 30;
+            int best_ride_distance = -(1 << 30);
+
             for (const auto &ride: rides) {
                 if (viz[ride.index]) {
                     continue;
@@ -39,12 +44,13 @@ void HamiltonSolver::Solve() {
                 if (finish_time > ride.latest_finish) {
                     continue;
                 }
-                if (curr_distance < best_distance) {
+                if (curr_distance <= best_distance) {
                     best_distance = curr_distance;
                     best_ride = ride.index;
                     best_x = ride.finish_intersection.first;
                     best_y = ride.finish_intersection.second;
                     best_time = finish_time;
+                    best_ride_distance = ride_distance;
                 }
             }
 

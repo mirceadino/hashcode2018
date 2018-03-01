@@ -26,10 +26,24 @@ void UberSolver::Solve() {
     double p = 0.0;
 
     sort(rides.begin(), rides.end(), [p, average_earliest_start, average_distance](const Ride &a, const Ride &b) {
-        int a_distance = GetDistance(a.start_intersection, a.finish_intersection);
-        int b_distance = GetDistance(b.start_intersection, b.finish_intersection);
-        return a_distance > b_distance;
+        if (a.earliest_start == b.earliest_start) {
+            return GetDistance(a.start_intersection, a.finish_intersection) >
+                   GetDistance(b.start_intersection, b.finish_intersection);
+        }
+        return a.earliest_start < b.earliest_start;
     });
+
+//    for (int i = 1; i < rides.size(); ++i) {
+//        int mlc = rand() % 3;
+//        if (mlc == 0) {
+//            swap(rides[i - 1], rides[i]);
+//        }
+//    }
+
+    int D = 50;
+    for (int i = 0; i < rides.size(); i += 5) {
+        random_shuffle(rides.begin() + i, min(rides.begin() + i + D, rides.end()));
+    }
 
     vector<Vehicle> vehicles;
     for (int i = 0; i < input.getNumVehicles(); ++i) {
@@ -44,17 +58,18 @@ void UberSolver::Solve() {
         int best_arrival_time = 1 << 30;
         int best_vehicle_index = -1;
         int best_finish_time = -1;
+        int best_ride_time = -1;
         for (auto &vehicle : vehicles) {
             int arrival_time = vehicle.time + GetDistance(make_pair(vehicle.x, vehicle.y), ride.start_intersection);
             int finish_time = max(arrival_time, ride.earliest_start) + ride_time;
             if (finish_time > ride.latest_finish) {
                 continue;
             } else {
-//                if (arrival_time < best_arrival_time) {
-                if (rand() < best_arrival_time) {
+                if (arrival_time < best_arrival_time) {
                     best_arrival_time = arrival_time;
                     best_vehicle_index = vehicle.index;
                     best_finish_time = finish_time;
+                    best_ride_time = ride_time;
                 }
             }
         }
