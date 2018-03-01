@@ -23,16 +23,12 @@ void UberSolver::Solve() {
         average_distance += GetDistance(ride.start_intersection, ride.finish_intersection);
     }
 
-    double p = 1.0;
+    double p = 0.0;
 
     sort(rides.begin(), rides.end(), [p, average_earliest_start, average_distance](const Ride &a, const Ride &b) {
         int a_distance = GetDistance(a.start_intersection, a.finish_intersection);
-        double cost_a = p * a.earliest_start / average_earliest_start + (1.0 - p) * a_distance / average_distance;
-
         int b_distance = GetDistance(b.start_intersection, b.finish_intersection);
-        double cost_b = p * b.earliest_start / average_earliest_start + (1.0 - p) * b_distance / average_distance;
-
-        return cost_a < cost_b;
+        return a_distance > b_distance;
     });
 
     vector<Vehicle> vehicles;
@@ -40,6 +36,7 @@ void UberSolver::Solve() {
         Vehicle vehicle(i, 0, 0);
         vehicles.push_back(vehicle);
     }
+    srand(time(0));
 
     for (const auto &ride : rides) {
         int ride_time = GetDistance(ride.start_intersection, ride.finish_intersection);
@@ -53,7 +50,8 @@ void UberSolver::Solve() {
             if (finish_time > ride.latest_finish) {
                 continue;
             } else {
-                if (arrival_time < best_arrival_time) {
+//                if (arrival_time < best_arrival_time) {
+                if (rand() < best_arrival_time) {
                     best_arrival_time = arrival_time;
                     best_vehicle_index = vehicle.index;
                     best_finish_time = finish_time;
