@@ -46,14 +46,17 @@ void UberSolver::Solve() {
 
         int best_arrival_time = 1 << 30;
         int best_vehicle_index = -1;
+        int best_finish_time = -1;
         for (auto &vehicle : vehicles) {
             int arrival_time = vehicle.time + GetDistance(make_pair(vehicle.x, vehicle.y), ride.start_intersection);
-            if (max(arrival_time, ride.earliest_start) + ride_time > ride.latest_finish) {
+            int finish_time = max(arrival_time, ride.earliest_start) + ride_time;
+            if (finish_time > ride.latest_finish) {
                 continue;
             } else {
                 if (arrival_time < best_arrival_time) {
                     best_arrival_time = arrival_time;
                     best_vehicle_index = vehicle.index;
+                    best_finish_time = finish_time;
                 }
             }
         }
@@ -62,7 +65,7 @@ void UberSolver::Solve() {
             output.Assign(best_vehicle_index, ride.index);
             Vehicle updated_vehicle = Vehicle(best_vehicle_index, ride.finish_intersection.first,
                                               ride.finish_intersection.second);
-            updated_vehicle.time = best_arrival_time + 1;
+            updated_vehicle.time = best_finish_time + 1;
             vehicles[best_vehicle_index] = updated_vehicle;
         }
     }
