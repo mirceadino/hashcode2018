@@ -12,7 +12,7 @@ vector<string> filenames =
         {"a_example", "b_should_be_easy", "c_no_hurry", "d_metropolis", "e_high_bonus"};
 
 int main(int argc, char **argv) {
-    int filename_index = 1;
+    int filename_index = 4;
     if (argc > 1) {
         sscanf(argv[1], "%d", &filename_index);
     }

@@ -1,2 +1,2 @@
 #!/bin/bash
-zip alexandra.zip src/
+zip src/output/alexandra.zip src/
