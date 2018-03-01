@@ -21,7 +21,7 @@ public:
         freopen(filename.c_str(), "w", stdout);
 
         for (int i = 0; i < assignments_.size(); ++i) {
-            const vector<int> &rides = assignments_[i];
+            vector<int> &rides = assignments_[i];
             printf("%d ", (int) rides.size());
             sort(rides.begin(), rides.end());
             for (const auto &r: rides) {
