@@ -5,11 +5,12 @@
 
 class Vehicle {
 public:
-    Vehicle(int index = -1, int x = 0, int y = 0) : index(index), x(x), y(y) {}
+    Vehicle(int index = -1, int x = 0, int y = 0) : index(index), x(x), y(y), time(0) {}
 
     int index;
     int x;
     int y;
+    int time;
 
 };
 

@@ -22,6 +22,7 @@ public:
         int R, C, F, N, B, T;
         scanf("%d%d%d%d%d%d", &R, &C, &F, &N, &B, &T);
         map_ = Map(R, C);
+        num_vehicles_ = F;
 
         for (int i = 0; i < N; ++i) {
             int a, b, x, y, s, f;
@@ -38,6 +39,8 @@ public:
 
     vector<Ride> getRides() const { return rides_; }
 
+    int getNumVehicles() const {return num_vehicles_;}
+
     int getBonus() const { return bonus_; }
     int B() const { return getBonus(); }
     int getB() const { return getBonus(); }
@@ -48,6 +51,7 @@ public:
 
 protected:
     Map map_;
+    int num_vehicles_;
     vector<Ride> rides_;
     int bonus_;
     int num_steps_;

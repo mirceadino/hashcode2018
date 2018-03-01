@@ -12,7 +12,7 @@ vector<string> filenames =
         {"a_example", "b_should_be_easy", "c_no_hurry", "d_metropolis", "e_high_bonus"};
 
 int main(int argc, char **argv) {
-    int filename_index = 0;
+    int filename_index = 1;
     if (argc > 1) {
         sscanf(argv[1], "%d", &filename_index);
     }
@@ -24,8 +24,6 @@ int main(int argc, char **argv) {
 
     Solver *solver = new MySolver(input);
     solver->Solve();
-
-    cout << input.getBonus();
 
     Output output = solver->GetOutput();
     output.PrintToFile("./output/" + filename + ".out");
