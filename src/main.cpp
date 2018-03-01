@@ -9,7 +9,7 @@
 using namespace std;
 
 vector<string> filenames =
-        {""};
+        {"a_example", "b_should_be_easy", "c_no_hurry", "d_metropolis", "e_high_bonus"};
 
 int main(int argc, char **argv) {
     int filename_index = 0;
@@ -20,13 +20,13 @@ int main(int argc, char **argv) {
     const string filename = filenames[filename_index];
 
     Input input;
-    input.ReadFromFile("input/" + filename);
+    input.ReadFromFile("input/" + filename + ".in");
 
     Solver *solver = new MySolver(input);
     solver->Solve();
 
     Output output = solver->GetOutput();
-    output.PrintToFile("output/" + filename);
+    output.PrintToFile("output/" + filename + ".out");
 
     return 0;
 }
