@@ -9,9 +9,11 @@ using namespace std;
 
 class Solver {
 public:
-    Solver(Input input) : input_(input) {}
+    Solver(Input input) : input_(input), output_(input.getNumVehicles()) {}
 
-    virtual void Solve() = 0;
+    virtual
+
+    void Solve() = 0;
 
     Output GetOutput() {
         return output_;

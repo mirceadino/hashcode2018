@@ -7,7 +7,11 @@ using namespace std;
 
 class Output {
 public:
-    Output() {}
+    Output(int num_vehicles) {
+        for (int i = 0; i < num_vehicles; ++i) {
+            assignments_[i] = vector<int>();
+        }
+    }
 
     void Assign(int vehicle, int ride) {
         assignments_[vehicle].push_back(ride);
