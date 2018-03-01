@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/hashcode2018.dir/src/main.cpp.o CMakeFiles/hashcode2018.dir/src/solver/uber_solver/uber_solver.cpp.o CMakeFiles/hashcode2018.dir/src/solver/my_solver/my_solver.cpp.o  -o hashcode2018 
