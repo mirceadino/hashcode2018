@@ -22,10 +22,8 @@ void UberSolver::Solve() {
         average_earliest_start += ride.earliest_start;
         average_distance += GetDistance(ride.start_intersection, ride.finish_intersection);
     }
-    average_earliest_start /= 1.0 * rides.size();
-    average_distance /= 1.0 * rides.size();
 
-    double p = 0.8;
+    double p = 1.0;
 
     sort(rides.begin(), rides.end(), [p, average_earliest_start, average_distance](const Ride &a, const Ride &b) {
         int a_distance = GetDistance(a.start_intersection, a.finish_intersection);
