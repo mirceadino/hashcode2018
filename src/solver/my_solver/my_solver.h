@@ -12,6 +12,7 @@ class MySolver : public Solver {
 public:
     MySolver(const Input &input) : Solver(input) {}
 
+    void Solve();
 };
 
 #endif //HASHCODE2018_MY_SOLVER_H

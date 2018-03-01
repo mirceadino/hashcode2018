@@ -11,7 +11,7 @@ class Solver {
 public:
     Solver(Input input) : input_(input) {}
 
-    void Solve() {}
+    virtual void Solve() = 0;
 
     Output GetOutput() {
         return output_;

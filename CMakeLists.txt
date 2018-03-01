@@ -3,5 +3,5 @@ project(hashcode2018)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES src/main.cpp src/base/input.h src/base/solver.h src/solver/my_solver/my_solver.h)
+set(SOURCE_FILES src/main.cpp src/base/input.h src/base/solver.h src/solver/my_solver/my_solver.h src/solver/my_solver/my_solver.cpp)
 add_executable(hashcode2018 ${SOURCE_FILES})

@@ -8,9 +8,17 @@
 
 using namespace std;
 
+vector<string> filenames =
+        {""};
+
 int main(int argc, char **argv) {
+    const int filename_index = 0;
+    if (argc > 1) {
+        sscanf(argv[1], "%d", &filename_index);
+    }
+
     Input input;
-    input.ReadFromFile("");
+    input.ReadFromFile(filenames[filename_index]);
 
     Solver *solver = new MySolver(input);
     solver->Solve();
