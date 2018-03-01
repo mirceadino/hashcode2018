@@ -10,6 +10,7 @@ public:
     Output() {}
 
     void PrintToFile(const string filename) {
+        freopen(filename, "w", stdout);
 
     }
 

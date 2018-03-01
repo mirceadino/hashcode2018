@@ -10,6 +10,7 @@ public:
     Input() {}
 
     void ReadFromFile(const string filename) {
+        freopen(filename, "r", stdin);
 
     }
 
