@@ -20,13 +20,15 @@ int main(int argc, char **argv) {
     const string filename = filenames[filename_index];
 
     Input input;
-    input.ReadFromFile("input/" + filename + ".in");
+    input.ReadFromFile("./input/" + filename + ".in");
 
     Solver *solver = new MySolver(input);
     solver->Solve();
 
+    cout << input.getBonus();
+
     Output output = solver->GetOutput();
-    output.PrintToFile("output/" + filename + ".out");
+    output.PrintToFile("./output/" + filename + ".out");
 
     return 0;
 }

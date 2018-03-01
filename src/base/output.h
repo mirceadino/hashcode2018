@@ -9,8 +9,12 @@ class Output {
 public:
     Output() {}
 
-    void Assign(int ride, int vehicle) {
+    void Assign(int vehicle, int ride) {
         assignments_[vehicle].push_back(ride);
+    }
+
+    void Assign(const Vehicle &vehicle, const Ride &ride) {
+        assignments_[vehicle.index].push_back(ride.index);
     }
 
     void Assign(const Ride &ride, const Vehicle &vehicle) {
