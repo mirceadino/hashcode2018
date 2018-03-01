@@ -26,11 +26,27 @@ void UberSolver::Solve() {
     }
 
     for (const auto &ride : rides) {
-        int distance = GetDistance(ride.start_intersection, ride.finish_intersection);
-    }
+        int ride_time = GetDistance(ride.start_intersection, ride.finish_intersection);
 
-//    for (int i = 0; i < num_vehicles && i < num_rides; ++i) {
-//        output.Assign(i, i);
-//    }
+        int best_arrival_time = 1 << 30;
+        int best_vehicle_index = -1;
+        for (auto &vehicle : vehicles) {
+            int arrival_time = max(vehicle.time + GetDistance(make_pair(vehicle.x, vehicle.y), ride.start_intersection),
+                                   ride.earliest_start);
+            if (arrival_time + ride_time > ride.latest_start) {
+                continue;
+            } else {
+                if (arrival_time < best_arrival_time) {
+                    best_arrival_time = arrival_time;
+                    best_vehicle_index = vehicle.index;
+                }
+            }
+        }
+
+        if (best_vehicle_index != -1) {
+            output.Assign(best_vehicle_index, ride.index);
+            vehicles[best_vehicle_index].time = best_arrival_time;
+        }
+    }
 }
 
