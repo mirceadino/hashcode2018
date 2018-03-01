@@ -45,7 +45,9 @@ void UberSolver::Solve() {
 
         if (best_vehicle_index != -1) {
             output.Assign(best_vehicle_index, ride.index);
-            vehicles[best_vehicle_index].time = best_arrival_time;
+            Vehicle updated_vehicle = Vehicle(best_vehicle_index, ride.finish_intersection.first,
+                                              ride.finish_intersection.second);
+            vehicles[best_vehicle_index] = updated_vehicle;
         }
     }
 }
